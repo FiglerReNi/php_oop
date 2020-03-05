@@ -1,9 +1,30 @@
 <?php
 require_once 'Classes/First.php';
 require_once 'Classes/Cars.php';
+require_once 'Classes/Trucks.php';
+require_once 'Classes/Second.php';
 
 $bmw = new Cars();
 $mercedes = new Cars();
+$truck = new Trucks();
+
+//static modifier
+Second::teszt2();
+echo Second::$pelda2 . '</br>';
+$second1 = new Second();
+$second1->teszt1();
+echo $second1->pelda1 . '</br>';
+
+//access modifier (public, private, protected)
+$bmw->carCount();
+$truck->TruckDetail();
+echo $bmw->wheelCount. '</br>'; //csak a public típusú érhető így el
+echo $truck->wheelCount. '</br>'; //csak a public típusú érhető így el
+
+//inheritance
+echo $truck->wheelCount . '</br>';
+echo $truck->carDetail() . '</br>';
+
 //method elérése
 echo $mercedes->carDetail() . '</br>';
 //propertie elérése
