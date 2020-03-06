@@ -3,10 +3,24 @@ require_once 'Classes/First.php';
 require_once 'Classes/Cars.php';
 require_once 'Classes/Trucks.php';
 require_once 'Classes/Second.php';
+require_once 'Classes/Cars1.php';
+require_once 'Classes/Cars2.php';
+require_once 'Classes/Trucks2.php';
 
 $bmw = new Cars();
 $mercedes = new Cars();
 $truck = new Trucks();
+$cars1 = new Cars1();
+$cars2a = new Cars1(); //$wheelcount = 50 $doorCount = 32 - a static nem indul alaphekyzetből új pédány esetén
+$cars2b = new Cars1(); //$wheelcount = 51 $doorCount = 32 - a static nem indul alaphekyzetből új pédány esetén
+
+//static extend használat (öröklés)
+Trucks2::display();
+
+//getter, setter: a private property-t közvetlenül nem érjük el csak classon belül, a getter, setter segítségével viszont igen
+echo $cars1->getDoorCount() . '</br>';
+$cars1->setDoorCount(8);
+echo $cars1->getDoorCount() . '</br>';
 
 //static modifier
 Second::teszt2();

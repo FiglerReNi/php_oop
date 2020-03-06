@@ -11,6 +11,7 @@ class Trucks extends Cars
         echo $this->doorCount . '</br>'; //public mindenhol
         //echo $this->index . '</br>';  // private, ezért itt nem érhető el
         echo $this->window . '</br>'; //protected class és al class-ok
+        $this->carCount();
     }
 
 }
