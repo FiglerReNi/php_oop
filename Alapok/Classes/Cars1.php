@@ -5,6 +5,7 @@
  * Constructor: automatikusan lefut, amikor példányosítunk
  * A static nem indul alaphekyzetből új pédány esetén, ha pl növeljük az értékét az minden pédánnyal nő.
  */
+
 class Cars1
 {
     private $doorCount = 32;
