@@ -11,6 +11,15 @@
                         DASHBOARD
                         <small>Subheading</small>
                     </h1>
+
+                    <?php
+                    $sql = "SELECT * FROM users WHERE id=2";
+                    $result = $database->query($sql);
+                    $userFound = $result->fetch_array();
+                    echo $userFound['username'];
+
+                    ?>
+
                     <ol class="breadcrumb">
                         <li>
                             <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
