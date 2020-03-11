@@ -39,6 +39,6 @@ class Database
     public function theInsertId(){
         return $this->connection->insert_id;
     }
-
 }
 
+$database = new Database();

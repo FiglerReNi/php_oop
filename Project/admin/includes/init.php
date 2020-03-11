@@ -1,5 +1,8 @@
 <?php
+
 include("database.php");
-$database = new Database();
+include ("user.php");
+
+
 
 

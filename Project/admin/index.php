@@ -13,11 +13,28 @@
                     </h1>
 
                     <?php
-                    $sql = "SELECT * FROM users WHERE id=2";
-                    $result = $database->query($sql);
-                    $userFound = $result->fetch_array();
-                    echo $userFound['username'];
+//                    teszt3
+//                      $user = User::findUserById(3);
+//                      echo $user['username'];
 
+//                    teszt2/a public functionnal
+//                      $user = new User();
+//                      $result = $user->findAllUsers();
+//                      while($row = $result->fetch_array()){
+//                          echo $row['username'] . '<br>';
+//                      }
+
+//                    teszt2/b static functionnal
+//                      $result = User::findAllUsers();
+//                      while($row = $result->fetch_array()){
+//                            echo $row['username'] . '<br>';
+//                      }
+
+//                    teszt1
+//                    $sql = "SELECT * FROM users WHERE id=2";
+//                    $result = $database->query($sql);
+//                    $userFound = $result->fetch_array();
+//                    echo $userFound['username'];
                     ?>
 
                     <ol class="breadcrumb">
