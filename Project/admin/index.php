@@ -13,6 +13,40 @@
                     </h1>
 
                     <?php
+//                    teszt9
+//                      $pictures = new Pictures();
+//                      $row = new Car();
+//                      $row->run();
+//                    teszt8
+//                      $users = User::findAllUsers();
+//                      foreach($users as $user){
+//                          echo $user->username . "</br>";
+//                      }
+
+//                    teszt7
+//                        $user = User::findUserById(3);
+//                        echo $user->first_name;
+
+//                    teszt6
+//                        $foundUser = User::findUserById(3);
+//                        $user = User::instantiationShort($foundUser);
+//                        echo $user->first_name;
+
+//                    teszt5
+//                        $foundUser = User::findUserById(3);
+//                        $user = User::instantiationLong($foundUser);
+//                        echo $user->last_name;
+
+//                    teszt4
+//                        $foundUser = User::findUserById(3);
+//                    $user = new User();
+//                    $user->id = $foundUser['id'];
+//                    $user->username = $foundUser['username'];
+//                    $user->password = $foundUser['password'];
+//                    $user->first_name = $foundUser['first_name'];
+//                    $user->last_name = $foundUser['last_name'];
+//                    echo $user->id;
+
 //                    teszt3
 //                      $user = User::findUserById(3);
 //                      echo $user['username'];
@@ -31,10 +65,10 @@
 //                      }
 
 //                    teszt1
-//                    $sql = "SELECT * FROM users WHERE id=2";
-//                    $result = $database->query($sql);
-//                    $userFound = $result->fetch_array();
-//                    echo $userFound['username'];
+//                      $sql = "SELECT * FROM users WHERE id=2";
+//                      $result = $database->query($sql);
+//                      $userFound = $result->fetch_array();
+//                      echo $userFound['username'];
                     ?>
 
                     <ol class="breadcrumb">
