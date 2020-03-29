@@ -76,5 +76,17 @@ class User
         $objectProperties = get_object_vars($this);
         return array_key_exists($attribute, $objectProperties);
     }
+
+    public static function verifyUser($username, $password){
+        global $database;
+        $username = $database->escapeString();
+        $password = $database->escapeString();
+        $sql = "SELECT * FROM users 
+                WHERE username = '{$username}'
+                AND password = '{$password}'
+                LIMIT 1";
+        $result = self::findThisQuery($sql);
+        return !empty($result) ? true : false;
+    }
 }
 

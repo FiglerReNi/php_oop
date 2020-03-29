@@ -17,6 +17,7 @@
 //                      $pictures = new Pictures();
 //                      $row = new Car();
 //                      $row->run();
+//
 //                    teszt8
 //                      $users = User::findAllUsers();
 //                      foreach($users as $user){

@@ -1,6 +1,10 @@
-<?php ob_start(); ?>
-<?php include('init.php');  ?>
-<?php $database = new Database();  ?>
+<?php ob_start();
+require_once('init.php');
+
+if(!$session->isSignedIn()){
+   redirect("login.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

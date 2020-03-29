@@ -1,9 +1,12 @@
 <?php
 
-include ("functions.php");
+require_once ("functions.php");
+$database = new Database();
+$session = new Session();
 //az autoload miatt nem kellenek
-//include("database.php");
-//include ("user.php");
+//require_once("database.php");
+//require_once ("user.php");
+//require_once("session.php");
 
 
 
