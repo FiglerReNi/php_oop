@@ -79,14 +79,14 @@ class User
 
     public static function verifyUser($username, $password){
         global $database;
-        $username = $database->escapeString();
-        $password = $database->escapeString();
+        $username = $database->escapeString($username);
+        $password = $database->escapeString($password);
         $sql = "SELECT * FROM users 
                 WHERE username = '{$username}'
                 AND password = '{$password}'
                 LIMIT 1";
         $result = self::findThisQuery($sql);
-        return !empty($result) ? true : false;
+        return !empty($result) ? array_shift($result) : false;
     }
 }
 

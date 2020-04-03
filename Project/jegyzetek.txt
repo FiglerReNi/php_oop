@@ -1,0 +1,34 @@
+Fájl hozzáférés
+
+-külön tároljuk a feltöltött fájlokat az alkalmazástól
+-ezekhez külön hozzáféréseket adhatunk, mint a program fájlokhoz
+-ne legyen túl sok fajta hozzáférési jog (pl. olvasás, írás stb)
+
+Windows engedélyek:
+Jobb klikk a fájlon/mappán -> Tulajdonságok -> Biztonság
+
+Linux:
+-read jog (R)
+-write jog (W)
+-excecute jog (X)
+-ha nincs valamilyen jog: -
+Csoportok:
+-user
+-group
+-other
+Példa:
+User: rwx (minden joga van)
+Group: rw- (írni, olvasni tudja csak)
+Other: r-- (olvasási jog csak)
+Symbolic Notation
+R -> 4
+W -> 2
+X -> 1
+- -> 0
+rwx => 7 (4+2+1)
+rw => 6 (4+2)
+r => 4
+Setting Permissions
+sudo -> run as super user
+chmod -> change permissions
+chown -> change owner

@@ -5,11 +5,13 @@ class Session
 
     private $signedIn = false;
     public $userId;
+    public $message;
 
     function __construct()
     {
         session_start();
-        $this->checkTheLigin();
+        $this->checkTheLogin();
+        $this->checkMessage();
     }
 
     public function isSignedIn()
@@ -33,7 +35,7 @@ class Session
         $this->signedIn = false;
     }
 
-    private function checkTheLigin()
+    private function checkTheLogin()
     {
         if (isset($_SESSION['user_id'])) {
             $this->userId = $_SESSION['user_id'];
@@ -41,6 +43,25 @@ class Session
         } else {
             unset($this->userId);
             $this->signedIn = false;
+        }
+    }
+
+    public function message($msg = "")
+    {
+        if (!empty($msg)) {
+            $_SESSION['message'] = $msg;
+        } else {
+            return $this->message;
+        }
+    }
+
+    private function checkMessage()
+    {
+        if (isset($_SESSION['message'])) {
+            $this->message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        } else {
+            $this->message = "";
         }
     }
 }
