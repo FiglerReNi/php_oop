@@ -42,7 +42,7 @@ class User
         global $database;
         $resultSet = $database->query($sql);
         $theObjectArray = [];
-        while($row = $resultSet->fetch_array()){
+        while ($row = $resultSet->fetch_array()) {
             $theObjectArray[] = self::instantiationShort($row);
         }
         return $theObjectArray;
@@ -77,7 +77,8 @@ class User
         return array_key_exists($attribute, $objectProperties);
     }
 
-    public static function verifyUser($username, $password){
+    public static function verifyUser($username, $password)
+    {
         global $database;
         $username = $database->escapeString($username);
         $password = $database->escapeString($password);
@@ -88,5 +89,35 @@ class User
         $result = self::findThisQuery($sql);
         return !empty($result) ? array_shift($result) : false;
     }
-}
 
+    public function create()
+    {
+        global $database;
+        $sql = "INSERT INTO users 
+                SET username = '" . $database->escapeString($this->username) . "',
+                password = '" . $database->escapeString($this->password) . "',
+                first_name = '" . $database->escapeString($this->first_name) . "',
+                last_name = '" . $database->escapeString($this->last_name) . "'";
+        if ($database->query($sql)) {
+            $this->id = $database->theInsertId();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update(){
+        global $database;
+        $sql = "UPDATE users 
+                SET username = '" . $database->escapeString($this->username) . "',
+                password = '" . $database->escapeString($this->password) . "',
+                first_name = '" . $database->escapeString($this->first_name) . "',
+                last_name = '" . $database->escapeString($this->last_name) . "'
+                WHERE id = '" . $database->escapeString($this->id) . "'";
+        $database->query($sql);
+        //ha a connection public a database.php-ban akkor így is lehet
+        //return ($database->connection->affected_rows == 1) ? true : false;
+        //ha a connection private a database.php-ban akkor kell ott egy affectedRow() method, hogy ezt el tudjuk érni
+        return ($database->affectedRow() == 1) ? true : false;
+    }
+}

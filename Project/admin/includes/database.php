@@ -39,5 +39,9 @@ class Database
     public function theInsertId(){
         return $this->connection->insert_id;
     }
+
+    public function affectedRow(){
+        return $this->connection->affected_rows;
+    }
 }
 

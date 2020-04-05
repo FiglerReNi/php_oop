@@ -18,6 +18,20 @@ if(!$session->isSignedIn()){
                     </h1>
 
                     <?php
+//                    teszt11
+                      $user = User::findUserById(4);
+                      $user->last_name = "X";
+                      $message = $user->update();
+                      var_dump($message);
+
+//                    teszt10
+//                      $user = new User();
+//                      $user->username = "teszt";
+//                      $user->password = "12345";
+//                      $user->first_name = "Teszt";
+//                      $user->last_name = "FReni";
+//                      $user->create();
+
 //                    teszt9
 //                      $pictures = new Pictures();
 //                      $row = new Car();
