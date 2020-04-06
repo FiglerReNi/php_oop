@@ -18,11 +18,30 @@ if(!$session->isSignedIn()){
                     </h1>
 
                     <?php
-//                    teszt11
-                      $user = User::findUserById(4);
-                      $user->last_name = "X";
-                      $message = $user->update();
+//                    teszt14
+//                      $user = new User();
+//                      $user->username = "teszt9";
+//                      $user->password = "12345";
+//                      $user->first_name = "Teszt";
+//                      $user->last_name = "FReni";
+//                      $user->save();
+
+//                    teszt13
+                      $user = User::findUserById(7);
+                      $user->password = 222222222;
+                      $message = $user->save();
                       var_dump($message);
+
+//                    teszt12
+//                      $user = User::findUserById(5);
+//                      $message = $user->delete();
+//                      var_dump($message);
+
+//                    teszt11
+//                      $user = User::findUserById(4);
+//                      $user->last_name = "X";
+//                      $message = $user->update();
+//                      var_dump($message);
 
 //                    teszt10
 //                      $user = new User();

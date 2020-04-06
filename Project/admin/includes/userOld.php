@@ -2,8 +2,6 @@
 
 class User
 {
-    protected static $dbTable = "users"; //1. lépés hogy a create, update, delete minden táblához jó legyen
-    protected static $dbTableFields = array('username', 'password', 'first_name', 'last_name'); //2. lépés a tábla mezői
     public $id;
     public $username;
     public $password;
@@ -92,27 +90,20 @@ class User
         return !empty($result) ? array_shift($result) : false;
     }
 
-    protected function properties(){
-        global $database;
-        $properties = array();
-        foreach(self::$dbTableFields as $dbField){
-            if(property_exists($this, $dbField)){
-                $properties[$dbField] = $database->escapeString($this->$dbField);
-            }
-        }
-         return $properties;
-    }
-
     public function save(){
         return isset($this->id) ? $this->update() : $this->create();
     }
-//B változat, úgy is meg lehet csinálni ezt, hogy minden táblához jók legyenek
+
+//A változat, így csak egy táblára használhatóak, mert specifikus adatok vannak benne.
+//B változat -> user.php
     private function create()
     {
         global $database;
-        $properties = $this->properties();
-        $sql = "INSERT INTO " . self::$dbTable . " (". implode(', ', array_keys($properties)).") 
-                VALUES ('". implode("', '", array_values($properties))."')";
+        $sql = "INSERT INTO users
+                SET username = '" . $database->escapeString($this->username) . "',
+                password = '" . $database->escapeString($this->password) . "',
+                first_name = '" . $database->escapeString($this->first_name) . "',
+                last_name = '" . $database->escapeString($this->last_name) . "'";
         if ($database->query($sql)) {
             $this->id = $database->theInsertId();
             return true;
@@ -123,13 +114,11 @@ class User
 
     private function update(){
         global $database;
-        $properties = $this->properties();
-        $propertiesPairs = array();
-        foreach ($properties as $key => $value){
-            $propertiesPairs[] = "{$key}='{$value}'";
-        }
-        $sql = "UPDATE " . self::$dbTable . "
-                SET " . implode(", ", $propertiesPairs) . "
+        $sql = "UPDATE users
+                SET username = '" . $database->escapeString($this->username) . "',
+                password = '" . $database->escapeString($this->password) . "',
+                first_name = '" . $database->escapeString($this->first_name) . "',
+                last_name = '" . $database->escapeString($this->last_name) . "'
                 WHERE id = '" . $database->escapeString($this->id) . "'";
         $database->query($sql);
         //ha a connection public a database.php-ban akkor így is lehet
@@ -140,52 +129,10 @@ class User
 
     public function delete(){
         global $database;
-        $sql = "DELETE FROM " . self::$dbTable . "
+        $sql = "DELETE FROM users
                 WHERE id = '" . $database->escapeString($this->id) . "'
                 LIMIT 1";
         $database->query($sql);
         return ($database->affectedRow() == 1) ? true : false;
     }
-
-//A változat, így csak egy táblára használhatóak, mert specifikus adatok vannak benne.
-//    private function create()
-//    {
-//        global $database;
-//        $sql = "INSERT INTO users
-//                SET username = '" . $database->escapeString($this->username) . "',
-//                password = '" . $database->escapeString($this->password) . "',
-//                first_name = '" . $database->escapeString($this->first_name) . "',
-//                last_name = '" . $database->escapeString($this->last_name) . "'";
-//        if ($database->query($sql)) {
-//            $this->id = $database->theInsertId();
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    private function update(){
-//        global $database;
-//        $sql = "UPDATE users
-//                SET username = '" . $database->escapeString($this->username) . "',
-//                password = '" . $database->escapeString($this->password) . "',
-//                first_name = '" . $database->escapeString($this->first_name) . "',
-//                last_name = '" . $database->escapeString($this->last_name) . "'
-//                WHERE id = '" . $database->escapeString($this->id) . "'";
-//        $database->query($sql);
-//        //ha a connection public a database.php-ban akkor így is lehet
-//        //return ($database->connection->affected_rows == 1) ? true : false;
-//        //ha a connection private a database.php-ban akkor kell ott egy affectedRow() method, hogy ezt el tudjuk érni
-//        return ($database->affectedRow() == 1) ? true : false;
-//    }
-//
-//    public function delete(){
-//        global $database;
-//        $sql = "DELETE FROM users
-//                WHERE id = '" . $database->escapeString($this->id) . "'
-//                LIMIT 1";
-//        $database->query($sql);
-//        return ($database->affectedRow() == 1) ? true : false;
-//    }
 }
-
