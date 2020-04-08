@@ -1,4 +1,8 @@
-<?php include("includes/header.php"); ?>
+<?php include("includes/header.php");
+if(!$session->isSignedIn()){
+redirect("login.php");
+}
+?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <?php include("includes/top_nav.php"); ?>
     <?php include("includes/sidebar.php"); ?>
@@ -11,14 +15,30 @@
                     UPLOAD
                     <small>Subheading</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                    </li>
-                    <li class="active">
-                        <i class="fa fa-file"></i> Blank Page
-                    </li>
-                </ol>
+                <div class="col-md-6">
+                <form action="upload.php" enctype="multipart/form-data" method="post">
+<!--                    div.form-group>ul>li*5  -> tab -->
+<!--                        Eredmény: -->
+<!--                    <div class="form-group">-->
+<!--                        <ul>-->
+<!--                            <li></li>-->
+<!--                            <li></li>-->
+<!--                            <li></li>-->
+<!--                            <li></li>-->
+<!--                            <li></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                    <div class="form-group">
+                        <input type="text" name="title" class="form-control"><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="fileUpload"><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit"><br>
+                    </div>
+                </form>
+                </div>
             </div>
         </div>
     </div>

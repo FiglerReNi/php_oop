@@ -18,27 +18,44 @@ if(!$session->isSignedIn()){
                     </h1>
 
                     <?php
+//                    teszt17
+//                      echo DS . '<br>';
+//                      echo SITEROUTE . '<br>';
+//                      echo INCLUDESPATH;
+
+//                    teszt16
+//                      $photos = new photo();
+//                      $photos->title = "Me";
+//                      $photos->filename = "me.jpg";
+//                      $photos->save();
+
+//                    teszt15
+//                      $photos = photo::findAll();
+//                      foreach ($photos as $photo){
+//                          echo $photo->title . '<br>';
+//                      }
+
 //                    teszt14
 //                      $user = new User();
-//                      $user->username = "teszt9";
+//                      $user->username = "frenata";
 //                      $user->password = "12345";
 //                      $user->first_name = "Teszt";
 //                      $user->last_name = "FReni";
 //                      $user->save();
 
 //                    teszt13
-                      $user = User::findUserById(7);
-                      $user->password = 222222222;
-                      $message = $user->save();
-                      var_dump($message);
+//                      $user = User::findById(7);
+//                      $user->password = 222222222;
+//                      $message = $user->save();
+//                      var_dump($message);
 
 //                    teszt12
-//                      $user = User::findUserById(5);
+//                      $user = User::findById(5);
 //                      $message = $user->delete();
 //                      var_dump($message);
 
 //                    teszt11
-//                      $user = User::findUserById(4);
+//                      $user = User::findById(4);
 //                      $user->last_name = "X";
 //                      $message = $user->update();
 //                      var_dump($message);
@@ -57,27 +74,27 @@ if(!$session->isSignedIn()){
 //                      $row->run();
 //
 //                    teszt8
-//                      $users = User::findAllUsers();
+//                     $users = User::findAll();
 //                      foreach($users as $user){
 //                          echo $user->username . "</br>";
 //                      }
 
 //                    teszt7
-//                        $user = User::findUserById(3);
+//                        $user = User::findById(10);
 //                        echo $user->first_name;
 
 //                    teszt6
-//                        $foundUser = User::findUserById(3);
+//                        $foundUser = User::findById(3);
 //                        $user = User::instantiationShort($foundUser);
 //                        echo $user->first_name;
 
 //                    teszt5
-//                        $foundUser = User::findUserById(3);
+//                        $foundUser = User::findById(3);
 //                        $user = User::instantiationLong($foundUser);
 //                        echo $user->last_name;
 
 //                    teszt4
-//                        $foundUser = User::findUserById(3);
+//                        $foundUser = User::findById(3);
 //                    $user = new User();
 //                    $user->id = $foundUser['id'];
 //                    $user->username = $foundUser['username'];
@@ -87,18 +104,18 @@ if(!$session->isSignedIn()){
 //                    echo $user->id;
 
 //                    teszt3
-//                      $user = User::findUserById(3);
+//                      $user = User::findById(3);
 //                      echo $user['username'];
 
 //                    teszt2/a public functionnal
 //                      $user = new User();
-//                      $result = $user->findAllUsers();
+//                      $result = $user->findAll();
 //                      while($row = $result->fetch_array()){
 //                          echo $row['username'] . '<br>';
 //                      }
 
 //                    teszt2/b static functionnal
-//                      $result = User::findAllUsers();
+//                      $result = User::findAll();
 //                      while($row = $result->fetch_array()){
 //                            echo $row['username'] . '<br>';
 //                      }
