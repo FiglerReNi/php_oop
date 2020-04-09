@@ -116,7 +116,7 @@ class dbObject
         return ($database->affectedRow() == 1) ? true : false;
     }
 
-    public function delete(){
+    protected function delete(){
         global $database;
         $sql = "DELETE FROM " . static::$dbTable . "
                 WHERE id = '" . $database->escapeString($this->id) . "'

@@ -1,6 +1,20 @@
 <?php include("includes/header.php");
+
 if(!$session->isSignedIn()){
 redirect("login.php");
+}
+
+$message = "";
+if(isset($_POST['submit'])){
+   $photo = new Photo();
+   $photo->title = $_POST['title'];
+   $photo->setFiles($_FILES['fileUpload']);
+   if($photo->save()){
+       $message = "Photo uploaded successfully";
+   } else{
+       $message = join("<br>", $photo->customErrors);
+   }
+
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -16,7 +30,8 @@ redirect("login.php");
                     <small>Subheading</small>
                 </h1>
                 <div class="col-md-6">
-                <form action="upload.php" enctype="multipart/form-data" method="post">
+                 <h6><?= $message; ?></h6>
+                    <form action="upload.php" enctype="multipart/form-data" method="post">
 <!--                    div.form-group>ul>li*5  -> tab -->
 <!--                        Eredmény: -->
 <!--                    <div class="form-group">-->

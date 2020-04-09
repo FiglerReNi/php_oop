@@ -42,6 +42,11 @@ class photo extends dbObject
 
     }
 
+    public function picturePath(){
+        return $this->uploadDirectory . DS . $this->filename;
+    }
+
+
     public function save(){
         if($this->id){
             $this->update();
@@ -68,12 +73,16 @@ class photo extends dbObject
                 $this->customErrors[] = "Permission failed";
                 return false;
             }
-
-
         }
-
-
     }
 
+    public function deletePhoto(){
+        if($this->delete()){
+            $targetPath = SITEROUTE . DS . 'admin' .DS . $this->picturePath();
+            return unlink($targetPath) ? true : false;
+        }else{
+            return false;
+        }
+    }
 
 }
