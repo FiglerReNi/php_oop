@@ -30,10 +30,10 @@ if(!$session->isSignedIn()){
                       <?php $photos = photo::findAll();
                       foreach($photos as $photo){
                         echo '<tr>
-                             <td><img src="'.$photo->picturePath().'" alt="" width="62px" height="62px">
+                             <td><img src="'.$photo->picturePath().'" alt="" class="admin-photo">
                              <div class="pictures-link">
                              <a href="delete_photo.php?id='.$photo->id.'">Delete</a>
-                             <a href="">Edit</a>
+                             <a href="edit_photo.php?id='.$photo->id.'">Edit</a>
                              <a href="">View</a>
 </div>
                              

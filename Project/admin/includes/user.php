@@ -3,7 +3,7 @@
 class User extends dbObject
 {
     protected static $dbTable = "users"; //1. lépés hogy a create, update, delete minden táblához jó legyen
-    protected static $dbTableFields = array('username', 'password', 'first_name', 'last_name'); //2. lépés a tábla mezői
+    protected static $dbTableFields = array('id', 'username', 'password', 'first_name', 'last_name'); //2. lépés a tábla mezői
     public $id;
     public $username;
     public $password;

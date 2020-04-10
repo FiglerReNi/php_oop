@@ -11,11 +11,15 @@ CREATE TABLE `gallerysystem`.`users`(
 ) CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 CREATE TABLE `gallerysystem`.`photos`(  
-  `photo_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255),
   `description` TEXT,
   `filename` VARCHAR(255),
   `type` VARCHAR(255),
   `size` INT(11),
-  PRIMARY KEY (`photo_id`)
+  PRIMARY KEY (`id`)
 ) CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+ALTER TABLE `gallerysystem`.`photos`   
+  ADD COLUMN `caption` VARCHAR(255) NULL AFTER `title`,
+  ADD COLUMN `alternate_text` VARCHAR(255) NULL AFTER `description`;

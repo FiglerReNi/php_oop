@@ -1,4 +1,4 @@
-<?php include("includes/header.php");
+<?php require_once('includes/init.php');
 
 if(!$session->isSignedIn()){
     redirect("login.php");
