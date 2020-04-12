@@ -8,6 +8,20 @@
 
 class dbObject
 {
+    private $tmpPath;
+    public $customErrors = array();
+    private $uploadErrors = array(
+        UPLOAD_ERR_OK => "There is no error.",
+        UPLOAD_ERR_INI_SIZE => "The uploaded file exceeds the upload_max_filesize directive in php.ini.",
+        UPLOAD_ERR_FORM_SIZE => "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.",
+        UPLOAD_ERR_PARTIAL => "The uploaded file was only partially uploaded.",
+        UPLOAD_ERR_NO_FILE => "No file was uploaded.",
+        UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder.",
+        UPLOAD_ERR_CANT_WRITE => "Failed to write file to disk.",
+        UPLOAD_ERR_EXTENSION => "A PHP extension stopped the file upload."
+    );
+    private $imagePlaceholder = "http://placehold.it/100X100&text=image";
+
     public static function findAll()
     {
 //        B változat
@@ -80,6 +94,19 @@ class dbObject
         return $properties;
     }
 
+    public function Path(){
+        return empty($this->filename) ? $this->imagePlaceholder : $this->uploadDirectory . DS . $this->filename;
+    }
+
+    public function deletePhoto(){
+        if($this->delete()){
+            $targetPath = SITEROUTE . DS . 'admin' .DS . $this->Path();
+            return unlink($targetPath) ? true : false;
+        }else{
+            return false;
+        }
+    }
+
     public function save(){
         return isset($this->id) ? $this->update() : $this->create();
     }
@@ -123,5 +150,52 @@ class dbObject
                 LIMIT 1";
         $database->query($sql);
         return ($database->affectedRow() == 1) ? true : false;
+    }
+
+    public function setFiles($file)
+    {
+        if (empty($file) || !$file || !is_array($file)) {
+            $this->customErrors[] = "There was no file upload here";
+            return false;
+        } elseif ($file['error'] != 0) {
+            $this->customErrors[] = $this->uploadErrors[$file['error']];
+            return false;
+        } else {
+            $this->filename = basename($file['name']);
+            $this->tmpPath = $file['tmp_name'];
+            $this->type = $file['type'];
+            $this->size = $file['size'];
+        }
+
+    }
+
+    public function saveFileToo()
+    {
+        if (!empty($this->customErrors)) {
+            return false;
+        }
+        if (empty($this->filename) || empty($this->tmpPath)) {
+            $this->customErrors[] = "The file was not available";
+            return false;
+        }
+        $targetPath = SITEROUTE . DS . 'admin' . DS . $this->uploadDirectory . DS . $this->filename;
+        if (file_exists($targetPath)) {
+            $this->customErrors[] = "The file {$this->filename} already exists";
+            return false;
+        }
+        if (move_uploaded_file($this->tmpPath, $targetPath)) {
+            if ($this->id) {
+                if ($this->update()) {
+                    return true;
+                }
+            } else {
+                $this->create();
+                return true;
+            }
+            unset($this->tmpPath);
+        } else {
+            $this->customErrors[] = "Permission failed";
+            return false;
+        }
     }
 }

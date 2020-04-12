@@ -9,7 +9,7 @@ if(isset($_POST['submit'])){
    $photo = new Photo();
    $photo->title = $_POST['title'];
    $photo->setFiles($_FILES['fileUpload']);
-   if($photo->save()){
+   if($photo->saveFileToo()){
        $message = "Photo uploaded successfully";
    } else{
        $message = join("<br>", $photo->customErrors);

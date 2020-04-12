@@ -2,6 +2,9 @@
 if(!$session->isSignedIn()){
     redirect("login.php");
 }
+if(isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])){
+    new delete($_GET['id'], $_GET['path'], $_GET['class']);
+}
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <?php include("includes/top_nav.php"); ?>
@@ -30,9 +33,9 @@ if(!$session->isSignedIn()){
                       <?php $photos = photo::findAll();
                       foreach($photos as $photo){
                         echo '<tr>
-                             <td><img src="'.$photo->picturePath().'" alt="" class="admin-photo">
+                             <td><img src="'.$photo->Path().'" alt="" class="photoSize">
                              <div class="pictures-link">
-                             <a href="delete_photo.php?id='.$photo->id.'">Delete</a>
+                             <a href="photos.php?id='.$photo->id.'&path=photos.php&class=photo">Delete</a>
                              <a href="edit_photo.php?id='.$photo->id.'">Edit</a>
                              <a href="">View</a>
 </div>

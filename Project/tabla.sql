@@ -1,4 +1,4 @@
-usersCREATE DATABASE `gallerysystem`; 
+CREATE DATABASE `gallerysystem`; 
 
 CREATE TABLE `gallerysystem`.`users`(  
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -23,3 +23,6 @@ CREATE TABLE `gallerysystem`.`photos`(
 ALTER TABLE `gallerysystem`.`photos`   
   ADD COLUMN `caption` VARCHAR(255) NULL AFTER `title`,
   ADD COLUMN `alternate_text` VARCHAR(255) NULL AFTER `description`;
+  
+  ALTER TABLE `gallerysystem`.`users`   
+  ADD COLUMN `filename` VARCHAR(255) NULL AFTER `last_name`;

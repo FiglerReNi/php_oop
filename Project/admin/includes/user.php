@@ -3,12 +3,17 @@
 class User extends dbObject
 {
     protected static $dbTable = "users"; //1. lépés hogy a create, update, delete minden táblához jó legyen
-    protected static $dbTableFields = array('id', 'username', 'password', 'first_name', 'last_name'); //2. lépés a tábla mezői
+    protected static $dbTableFields = array('id', 'username', 'password', 'first_name', 'last_name', 'filename'); //2. lépés a tábla mezői
     public $id;
+    public $filename;
     public $username;
     public $password;
     public $first_name;
     public $last_name;
+    public $uploadDirectory = 'images';
+
+
+
 
 // e helyett a minden tálára használható instantiationShort method használható
 //    public static function instantiationLong($foundUser)
