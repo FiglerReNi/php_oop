@@ -13,8 +13,6 @@ class User extends dbObject
     public $uploadDirectory = 'images';
 
 
-
-
 // e helyett a minden tálára használható instantiationShort method használható
 //    public static function instantiationLong($foundUser)
 //    {

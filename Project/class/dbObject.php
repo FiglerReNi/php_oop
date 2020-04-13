@@ -35,7 +35,7 @@ class dbObject
     public static function findById($id)
     {
 //        B változat
-        $result = static::findThisQuery("SELECT * FROM " .static::$dbTable. " WHERE id =" . $id);
+        $result = static::findThisQuery("SELECT * FROM " . static::$dbTable . " WHERE id =" . $id);
 //      Short:
         return !empty($result) ? array_shift($result) : false;
 //      Long:
@@ -83,31 +83,35 @@ class dbObject
         return array_key_exists($attribute, $objectProperties);
     }
 
-    protected function properties(){
+    protected function properties()
+    {
         global $database;
         $properties = array();
-        foreach(static::$dbTableFields as $dbField){
-            if(property_exists($this, $dbField)){
+        foreach (static::$dbTableFields as $dbField) {
+            if (property_exists($this, $dbField)) {
                 $properties[$dbField] = $database->escapeString($this->$dbField);
             }
         }
         return $properties;
     }
 
-    public function Path(){
+    public function Path()
+    {
         return empty($this->filename) ? $this->imagePlaceholder : $this->uploadDirectory . DS . $this->filename;
     }
 
-    public function deletePhoto(){
-        if($this->delete()){
-            $targetPath = SITEROUTE . DS . 'admin' .DS . $this->Path();
+    public function deletePhoto()
+    {
+        if ($this->delete()) {
+            $targetPath = SITEROUTE . DS . 'admin' . DS . $this->Path();
             return unlink($targetPath) ? true : false;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function save(){
+    public function save()
+    {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
@@ -116,8 +120,8 @@ class dbObject
     {
         global $database;
         $properties = $this->properties();
-        $sql = "INSERT INTO " . static::$dbTable . " (". implode(', ', array_keys($properties)).") 
-                VALUES ('". implode("', '", array_values($properties))."')";
+        $sql = "INSERT INTO " . static::$dbTable . " (" . implode(', ', array_keys($properties)) . ") 
+                VALUES ('" . implode("', '", array_values($properties)) . "')";
         if ($database->query($sql)) {
             $this->id = $database->theInsertId();
             return true;
@@ -126,11 +130,12 @@ class dbObject
         }
     }
 
-    protected function update(){
+    protected function update()
+    {
         global $database;
         $properties = $this->properties();
         $propertiesPairs = array();
-        foreach ($properties as $key => $value){
+        foreach ($properties as $key => $value) {
             $propertiesPairs[] = "{$key}='{$value}'";
         }
         $sql = "UPDATE " . static::$dbTable . "
@@ -143,7 +148,8 @@ class dbObject
         return ($database->affectedRow() == 1) ? true : false;
     }
 
-    protected function delete(){
+    protected function delete()
+    {
         global $database;
         $sql = "DELETE FROM " . static::$dbTable . "
                 WHERE id = '" . $database->escapeString($this->id) . "'
@@ -166,7 +172,6 @@ class dbObject
             $this->type = $file['type'];
             $this->size = $file['size'];
         }
-
     }
 
     public function saveFileToo()
@@ -197,5 +202,15 @@ class dbObject
             $this->customErrors[] = "Permission failed";
             return false;
         }
+    }
+
+    public static function countAll()
+    {
+        global $database;
+        $sql = "SELECT COUNT(id) FROM " . static::$dbTable;
+        $result = $database->query($sql);
+        $row = $result->fetch_array();
+        return array_shift($row);
+        //return static::findThisQuery($sql);
     }
 }

@@ -90,7 +90,8 @@ class User
         return !empty($result) ? array_shift($result) : false;
     }
 
-    public function save(){
+    public function save()
+    {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
@@ -112,7 +113,8 @@ class User
         }
     }
 
-    private function update(){
+    private function update()
+    {
         global $database;
         $sql = "UPDATE users
                 SET username = '" . $database->escapeString($this->username) . "',
@@ -127,7 +129,8 @@ class User
         return ($database->affectedRow() == 1) ? true : false;
     }
 
-    public function delete(){
+    public function delete()
+    {
         global $database;
         $sql = "DELETE FROM users
                 WHERE id = '" . $database->escapeString($this->id) . "'

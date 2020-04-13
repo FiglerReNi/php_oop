@@ -1,3 +1,6 @@
+<?php ob_start();
+require_once('init/init.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

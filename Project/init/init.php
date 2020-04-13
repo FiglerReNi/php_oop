@@ -2,9 +2,8 @@
 
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 defined('SITEROUTE') ? null : define('SITEROUTE', 'C:' . DS . 'xampp' . DS . 'htdocs' . DS . 'php_oop' . DS . 'Project');
-defined('INCLUDESPATH') ? null : define('INCLUDESPATH', __DIR__);
 
-require_once ("functions.php");
+require_once("functions.php");
 $database = new Database();
 $session = new Session();
 

@@ -1,16 +1,14 @@
 <?php include("includes/header.php");
-
 if (!$session->isSignedIn()) {
     redirect("login.php");
 }
-
+$photo = photo::findById($_GET['id']);
+$allComments = comment::findComments($photo->id);
 $user = user::findById($session->userId);
-$comments = comment::findAll();
 
-if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
-    new delete($_GET['id'], $_GET['path'], $_GET['class']);
+if (isset($_GET['commentId']) && isset($_GET['path']) && isset($_GET['class'])) {
+    new delete($_GET['commentId'], $_GET['path'], $_GET['class']);
 }
-
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <?php include("includes/top_nav.php"); ?>
@@ -33,13 +31,13 @@ if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($comments as $comment) {
+                        <?php foreach ($allComments as $comment) {
                             echo '<tr>
                              <td>' . $comment->id . '</td>
                              <td>' . $comment->author . '
                              <div class="actions-link">';
                             if ($user->username == $comment->author) {
-                                echo '<a href="comments.php?id=' . $comment->id . '&path=comments.php&class=comment">Delete</a>';
+                                echo '<a href="comments_photo.php?commentId=' . $comment->id . '&path=comments_photo.php?id=' . $photo->id . '&class=comment&id=' . $photo->id . '">Delete</a>';
                             }
                             echo '</div>                          
                              </td>                           

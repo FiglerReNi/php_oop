@@ -1,8 +1,8 @@
 <?php include("includes/header.php");
-if(!$session->isSignedIn()){
+if (!$session->isSignedIn()) {
     redirect("login.php");
 }
-if(isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])){
+if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
     new delete($_GET['id'], $_GET['path'], $_GET['class']);
 }
 ?>?>
@@ -31,23 +31,22 @@ if(isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])){
                         </thead>
                         <tbody>
                         <?php $users = user::findAll();
-                        foreach($users as $user){
+                        foreach ($users as $user) {
                             echo '<tr>
-                             <td>'.$user->id.'</td>
-                             <td><img src="'.$user->Path().'" alt="" class="photoSize"></td>
-                             <td>'.$user->username.'
+                             <td>' . $user->id . '</td>
+                             <td><img src="' . $user->Path() . '" alt="" class="photoSize"></td>
+                             <td>' . $user->username . '
                              <div class="actions-link">
-                             <a href="users.php?id='.$user->id.'&path=users.php&class=user">Delete</a>
-                             <a href="edit_user.php?id='.$user->id.'">Edit</a>
-</div>                          
+                             <a href="users.php?id=' . $user->id . '&path=users.php&class=user">Delete</a>
+                             <a href="edit_user.php?id=' . $user->id . '">Edit</a>
+                             </div>                          
                              </td>                           
-                             <td>'.$user->first_name.'</td>
-                             <td>'.$user->last_name.'</td>
-                         </tr>';
+                             <td>' . $user->first_name . '</td>
+                             <td>' . $user->last_name . '</td>
+                             </tr>';
                         } ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

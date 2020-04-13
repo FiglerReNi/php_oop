@@ -12,14 +12,14 @@ class delete extends dbObject
         $this->class = $class;
         $this->path = $path;
 
-        if(empty($this->id)){
+        if (empty($this->id)) {
             redirect("$this->path");
-        }else{
+        } else {
             $object = $this->class::findById($this->id);
-            if($object){
+            if ($object) {
                 $object->deletePhoto();
                 redirect("$this->path");
-            }else{
+            } else {
                 redirect("$this->path");
             }
         }
