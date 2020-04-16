@@ -26,31 +26,19 @@ if (isset($_POST['submit'])) {
 
 ?>
     <div class="row">
-    <div class="col-md-8">
+    <div class="col-lg-12">
         <div class="row">
-            <h1>Blog Post Title</h1>
+            <h1><?=$photo->title?></h1>
             <p class="lead">
-                by <a href="#">Start Bootstrap</a>
+                by <a href="#">FReni</a>
             </p>
             <hr>
             <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
             <hr>
-            <img class="img-responsive" src="<?= $photo->path() ?>" alt="">
+            <img class="img-responsive center-block" src="<?= 'admin' . DS . $photo->Path() ?>" alt="">
             <hr>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut,
-                error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae
-                laborum minus inventore?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste
-                ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus,
-                voluptatibus.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde
-                eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis.
-                Enim, iure!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat
-                totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam
-                tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae?
-                Qui, necessitatibus, est!</p>
+            <p class="lead"><?= $photo->caption; ?></p>
+            <p><?= $photo->description; ?></p>
             <hr>
             <div class="well">
                 <h4>Leave a Comment:</h4>
@@ -80,7 +68,8 @@ if (isset($_POST['submit'])) {
             ?>
         </div>
     </div>
-    <div class="col-md-4">
-        <?php include("includes/sidebar.php"); ?>
     </div>
+<!--    <div class="col-md-4">-->
+<!--        --><?php //include("includes/sidebar.php"); ?>
+<!--    </div>-->
 <?php include("includes/footer.php"); ?>

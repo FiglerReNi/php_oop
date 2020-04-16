@@ -12,6 +12,7 @@ require_once('init/init.php');
     <title>Blog Home - Start Bootstrap Template</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/blog-home.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 <?php include("navigation.php"); ?>
