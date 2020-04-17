@@ -4,7 +4,13 @@ $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 $itemPerPage = 4;
 $itemTotalCount = photo::countAll();
 
-$photos = photo::findAll();
+$paginate = new paginate($page, $itemPerPage, $itemTotalCount);
+
+$sql = "SELECT * FROM photos 
+        LIMIT {$itemPerPage}
+        OFFSET {$paginate->offset()}";
+
+$photos = photo::findThisQuery($sql);
 
 ?>
 <div class="row">
@@ -17,6 +23,12 @@ $photos = photo::findAll();
                 </a>
             </div>
         <?php endforeach; ?>
+        </div>
+        <div class="row">
+            <ul class="pager">
+                <li class="next"></li>
+                <li class="previous"></li>
+            </ul>
         </div>
     </div>
 </div>
