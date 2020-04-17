@@ -16,7 +16,6 @@ if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
             <div class="col-lg-12">
                 <h1 class="page-header">
                     PHOTOS
-                    <small>Subheading</small>
                 </h1>
                 <div class="col-md-12">
                     <table class="table table-hover">

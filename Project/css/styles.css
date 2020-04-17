@@ -39,7 +39,9 @@
     border-radius: 5px;
 }
 
-.homePagePhoto{
-
+.pager .active a {
+    background-color: #000;
+    color: #ffff;
 }
+
 
