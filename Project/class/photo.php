@@ -14,4 +14,5 @@ class photo extends dbObject
     public $type;
     public $size;
     public $uploadDirectory = "images";
+
 }

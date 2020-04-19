@@ -27,6 +27,31 @@ $(document).ready(function () {
 
         chart.draw(data, options);
     }
+
+    var photoId;
+    var filename;
+
+    $(".modal_thumbnails").click(function () {
+        $("#set_user_image").prop('disabled', false);
+        photoId = $("#photoId").text();
+        filename = $(this).prop("id");
+    });
+
+    $("#set_user_image").click(function () {
+
+
+        $.ajax({
+            url: "../ajax/photo_library_modal.php",
+            data: {filename: filename, id: photoId},
+            type: "POST",
+            success:function (data) {
+                if(!data.error){
+                    $("#photoBox").prop("src", data);
+                }
+            }
+        })
+    })
+
 })
 
 

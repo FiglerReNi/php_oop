@@ -1,4 +1,6 @@
-<?php include("includes/header.php");
+<?php
+include("includes/header.php");
+include("photo_library_modal.php");
 
 if (!$session->isSignedIn()) {
     redirect("login.php");
@@ -38,7 +40,7 @@ if (empty($_GET['id'])) {
                             <input type="text" name="title" class="form-control" value="<?= $photo->title; ?>">
                         </div>
                         <div class="form-group">
-                            <a class="thumbnail" href="#"><img src="<?= $photo->Path(); ?>" alt="" class="admin-photo"></a>
+                            <a href="#" data-toggle="modal" data-target="#photo-modal" class="thumbnail"><img id="photoBox" src="<?= $photo->Path(); ?>" alt="" class="admin-photo"></a>
                         </div>
                         <div class="form-group">
                             <label for="caption">Caption</label>
@@ -68,7 +70,7 @@ if (empty($_GET['id'])) {
                                     <!--                                    <span class="glyphicon glyphicon-calendar"></span> Uploaded on:-->
                                     <!--                                </p>-->
                                     <p class="text ">
-                                        Photo Id: <span class="data photo_id_box"><?= $photo->id ?></span>
+                                        Photo Id: <span id="photoId" class="data photo_id_box"><?= $photo->id ?></span>
                                     </p>
                                     <p class="text">
                                         Filename: <span class="data"><?= $photo->filename ?></span>
@@ -98,6 +100,4 @@ if (empty($_GET['id'])) {
         </div>
     </div>
 </div>
-
-
 <?php include("includes/footer.php"); ?>

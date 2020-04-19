@@ -87,5 +87,6 @@ if (empty($_GET['id'])) {
         </div>
     </div>
 </div>
+<?php include("includes/footer.php"); ?>
 
 

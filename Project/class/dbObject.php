@@ -213,4 +213,12 @@ class dbObject
         return array_shift($row);
         //return static::findThisQuery($sql);
     }
+
+    public function ajaxSavePhoto($filename, $id){
+        global $database;
+        $this->filename = $database->escapeString($filename);
+        $this->id = $database->escapeString($id);
+        $this->save();
+        return $this->Path();
+    }
 }
