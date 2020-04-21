@@ -16,7 +16,7 @@ $photos = photo::findAll();
 
                                     <div class="col-xs-2">
                                         <a role="checkbox" aria-checked="false" tabindex="0"  href="#" class="thumbnail">
-                                            <img id="<?= $photo->filename ?>" class="modal_thumbnails img-responsive" src="<?= $photo->Path(); ?>" alt="">
+                                            <img id="<?= $photo->filename ?>" data="<?= $photo->id ?>" class="modal_thumbnails img-responsive" src="<?= $photo->Path(); ?>" alt="">
                                         </a>
                                     </div>
                                    <?php endforeach; ?>

@@ -30,16 +30,26 @@ $(document).ready(function () {
 
     var photoId;
     var filename;
+    var newPhotoId;
 
     $(".modal_thumbnails").click(function () {
         $("#set_user_image").prop('disabled', false);
         photoId = $("#photoId").text();
         filename = $(this).prop("id");
+        newPhotoId =  $(this).attr("data");
+        $.ajax({
+            url: "../ajax/photo_library_modal.php",
+            data: {newId: newPhotoId},
+            type: "POST",
+            success:function (data) {
+                if(!data.error){
+                    $("#modal_sidebar").text(data);
+                }
+            }
+        })
     });
 
     $("#set_user_image").click(function () {
-
-
         $.ajax({
             url: "../ajax/photo_library_modal.php",
             data: {filename: filename, id: photoId},
@@ -51,7 +61,6 @@ $(document).ready(function () {
             }
         })
     })
-
-})
+});
 
 
