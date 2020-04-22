@@ -18,17 +18,22 @@ if (empty($_GET['id'])) {
             $user->password = $_POST['pass'];
             if (empty($_FILES['file']['name'])) {
                 $user->save();
+                $session->message('The user has been updated!');
+              //  $message = 'The user has been updated!';
             } else {
                 $user->setFiles($_FILES['file']);
                 if ($user->saveFileToo()) {
                     if (!strpos($oldFile, 'http://placehold.it/100X100&text=image')) {
                         unlink($oldFile);
                     }
-                    $message = "Photo uploaded successfully";
+                    $session->message( "Photo uploaded successfully");
+                //    $message = "Photo uploaded successfully";
                 } else {
-                    $message = join("<br>", $user->customErrors);
+                    $session->message( join("<br>", $user->customErrors));
+                //    $message =  join("<br>", $user->customErrors);
                 }
             }
+            redirect('users.php');
         }
     }
 }
@@ -52,7 +57,7 @@ if (empty($_GET['id'])) {
                 </div>
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="col-md-6">
-                        <h6><?= $message; ?></h6>
+<!--                        <h6>--><?//= $message; ?><!--</h6>-->
                         <div class="form-group">
                             <input type="file" name="file">
                         </div>

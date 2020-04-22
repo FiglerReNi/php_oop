@@ -4,7 +4,7 @@ class Session
 {
     private $signedIn = false;
     public $userId;
-    public $message;
+    private $message;
     public $count;
 
     function __construct()

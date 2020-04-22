@@ -43,7 +43,7 @@ $(document).ready(function () {
             type: "POST",
             success:function (data) {
                 if(!data.error){
-                    $("#modal_sidebar").text(data);
+                    $("#modal_sidebar").html(data);
                 }
             }
         })
@@ -57,6 +57,7 @@ $(document).ready(function () {
             success:function (data) {
                 if(!data.error){
                     $("#photoBox").prop("src", data);
+                    $( "#dataBox" ).load(window.location.href + " #dataBox" );
                 }
             }
         })

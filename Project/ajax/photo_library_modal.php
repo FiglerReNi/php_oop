@@ -6,6 +6,5 @@ if(isset($_POST['filename']) || isset($_POST['id'])){
     echo $return;
 }
 if(isset($_POST['newId'])){
-    $photo = photo::findById($_POST['newId']);
-    echo 'teszt';
+    photo::displaySidebarData($_POST['newId']);
 }

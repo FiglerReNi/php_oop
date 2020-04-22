@@ -15,4 +15,14 @@ class photo extends dbObject
     public $size;
     public $uploadDirectory = "images";
 
+    public static function displaySidebarData($id){
+        $photo = photo::findById($id);
+
+        $output = "<a class='thumbnail' href='#'><img width='100' src='{$photo->Path()}'></a>
+                    <p>{$photo->filename}</p>
+                    <p>{$photo->type}</p>
+                    <p>{$photo->size}</p>";
+
+        echo $output;
+    }
 }

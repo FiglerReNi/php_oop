@@ -4,6 +4,7 @@ if (!$session->isSignedIn()) {
 }
 if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
     new delete($_GET['id'], $_GET['path'], $_GET['class']);
+    $session->message('Delete Succesfully!');
 }
 ?>?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -17,6 +18,9 @@ if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
                 <h1 class="page-header">
                     USERS
                 </h1>
+                <p class="bg-success">
+                    <?= $session->message(); ?>
+                </p>
                 <a href="add_user.php" class="btn btn-primary">Add User</a>
                 <div class="col-md-12">
                     <table class="table table-hover">
