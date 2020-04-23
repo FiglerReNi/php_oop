@@ -4,6 +4,7 @@ if (!$session->isSignedIn()) {
 }
 if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
     new delete($_GET['id'], $_GET['path'], $_GET['class']);
+    $session->message("The photo has been deleted successfully!");
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -17,6 +18,7 @@ if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
                 <h1 class="page-header">
                     PHOTOS
                 </h1>
+                <p class="bg-success"><?=  $session->message() ?></p>
                 <div class="col-md-12">
                     <table class="table table-hover">
                         <thead>

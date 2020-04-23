@@ -9,6 +9,7 @@ $comments = comment::findAll();
 
 if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
     new delete($_GET['id'], $_GET['path'], $_GET['class']);
+    $session->message("The comment has been deleted successfully!");
 }
 
 ?>
@@ -23,6 +24,7 @@ if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
                 <h1 class="page-header">
                     COMMENTS
                 </h1>
+                <p class="bg-success"><?=  $session->message() ?></p>
                 <div class="col-md-12">
                     <table class="table table-hover">
                         <thead>

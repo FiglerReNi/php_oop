@@ -46,19 +46,19 @@ if (isset($_POST['create'])) {
                         </div>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" name="username" class="form-control">
+                            <input type="text" name="username" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="first">First name</label>
-                            <input type="text" name="first" class="form-control">
+                            <input type="text" name="first" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="last">Last name</label>
-                            <input type="text" name="last" class="form-control">
+                            <input type="text" name="last" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="pass">Password</label>
-                            <input type="password" name="pass" class="form-control">
+                            <input type="password" name="pass" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="create" class="btn btn-primary pull-right">
