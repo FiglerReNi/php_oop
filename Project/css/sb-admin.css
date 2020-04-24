@@ -225,3 +225,10 @@ ul.alert-dropdown {
 .fontColor {
     color:  #999;
 }
+
+.dropzone {
+    border: 6px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+    margin-top: 5px;
+}

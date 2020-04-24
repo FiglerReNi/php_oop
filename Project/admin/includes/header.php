@@ -12,6 +12,7 @@ require_once('../init/init.php');
     <meta name="author" content="">
     <title>SB Admin - Bootstrap Admin Template</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/dropzone.css" rel="stylesheet">
     <link href="../css/sb-admin.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="../css/styles.css" rel="stylesheet" type="text/css">

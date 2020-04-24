@@ -66,9 +66,9 @@ if (empty($_GET['id'])) {
                             </div>
                             <div class="inside">
                                 <div class="box-inner">
-                                    <!--                                <p class="text">-->
-                                    <!--                                    <span class="glyphicon glyphicon-calendar"></span> Uploaded on:-->
-                                    <!--                                </p>-->
+                                    <p class="text">
+                                        <span class="glyphicon glyphicon-calendar"></span> Uploaded on:
+                                    </p>
                                     <p class="text ">
                                         Photo Id: <span id="photoId" class="data photo_id_box"><?= $photo->id ?></span>
                                     </p>

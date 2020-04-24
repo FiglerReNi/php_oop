@@ -4,6 +4,17 @@ if(!$session->isSignedIn()){
 redirect("login.php");
 }
 
+if(isset($_FILES['file'])){
+    $photo = new Photo();
+    $photo->title = $_POST['title'];
+    $photo->setFiles($_FILES['file']);
+    if($photo->saveFileToo()){
+        $message = "Photo uploaded successfully";
+    } else{
+        $message = join("<br>", $photo->customErrors);
+    }
+}
+
 $message = "";
 if(isset($_POST['submit'])){
    $photo = new Photo();
@@ -14,7 +25,6 @@ if(isset($_POST['submit'])){
    } else{
        $message = join("<br>", $photo->customErrors);
    }
-
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -28,6 +38,7 @@ if(isset($_POST['submit'])){
                 <h1 class="page-header">
                     UPLOAD
                 </h1>
+                <div class="row">
                 <div class="col-md-6">
                  <h6><?= $message; ?></h6>
                     <form action="upload.php" enctype="multipart/form-data" method="post">
@@ -52,6 +63,14 @@ if(isset($_POST['submit'])){
                         <input type="submit" name="submit"><br>
                     </div>
                 </form>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="upload.php" class="dropzone">
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
