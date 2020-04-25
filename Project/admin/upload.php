@@ -18,6 +18,7 @@ if(isset($_FILES['file'])){
 $message = "";
 if(isset($_POST['submit'])){
    $photo = new Photo();
+   $photo->user_id = $_SESSION['user_id'];
    $photo->title = $_POST['title'];
    $photo->setFiles($_FILES['fileUpload']);
    if($photo->saveFileToo()){

@@ -3,8 +3,13 @@ if (!$session->isSignedIn()) {
     redirect("login.php");
 }
 if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
-    new delete($_GET['id'], $_GET['path'], $_GET['class']);
-    $session->message("The photo has been deleted successfully!");
+    if(!empty(comment::findComments($_GET['id']))){
+        $session->message("The photo has comments, so you can't delete!");
+        redirect('photos.php');
+    }else{
+        new delete($_GET['id'], $_GET['path'], $_GET['class']);
+        $session->message("The photo has been deleted successfully!");
+    }
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -33,14 +38,22 @@ if (isset($_GET['id']) && isset($_GET['path']) && isset($_GET['class'])) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $photos = photo::findAll();
+                        <?php
+//                      Összes kép
+                        $photos = photo::findAll();
+//                      Csak az adott felhasználó képei
+                        $user = $_SESSION['user_id'];
+//                        $photos = photo::findPhoto($user);
                         foreach ($photos as $photo) {
                             echo '<tr>
                              <td><img src="' . $photo->Path() . '" alt="" class="photoSize">
-                             <div class="pictures-link">
-                             <a href="photos.php?id=' . $photo->id . '&path=photos.php&class=photo">Delete</a>
-                             <a href="edit_photo.php?id=' . $photo->id . '">Edit</a>
-                             <a href="../photo.php?id=' . $photo->id . '">View</a>
+                             <div class="pictures-link">';
+                             if($photo->user_id == $user){
+                                 echo '<a class="deleteLink" href="photos.php?id=\' . $photo->id . \'&path=photos.php&class=photo">Delete </a>
+                                        <a href="edit_photo.php?id=' . $photo->id . '">Edit </a>';
+                             }
+                            echo
+                             '<a href="../photo.php?id=' . $photo->id . '">View</a>
                              </div>
                              </td>
                              <td>' . $photo->id . '</td>

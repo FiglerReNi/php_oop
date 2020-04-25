@@ -1,7 +1,8 @@
 <?php
 
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
-defined('SITEROUTE') ? null : define('SITEROUTE', 'C:' . DS . 'xampp' . DS . 'htdocs' . DS . 'php_oop' . DS . 'Project');
+//defined('SITEROUTE') ? null : define('SITEROUTE', 'C:' . DS . 'xampp' . DS . 'htdocs' . DS . 'php_oop' . DS . 'Project');
+defined('SITEROUTE') ? null : define('SITEROUTE', $_SERVER['DOCUMENT_ROOT'] . DS . 'php_oop' . DS . 'Project');
 
 require_once("functions.php");
 $database = new Database();
